@@ -9,7 +9,7 @@ function Header({ openCart, cartQuantity }) {
         <button className='cartButtonStyle' onClick={openCart}>
           Cart
         </button>
-        {cartQuantity > 0 && <span className="cart-badge">{cartQuantity}</span>}
+        <span className="cart-badge">{cartQuantity}</span>
       </div>
     </header>
   );

@@ -1,9 +1,11 @@
 import React from 'react';
 import CartItem from './CartItem';
 import './Cart.css';
+import Modal from './Modal'
 
 function Cart({ items, total, clearCart, cartOpen}) {
   return (
+    <Modal setIsClose={cartOpen}>
     <div className="cart-container">
       <h2>Cart Items</h2>
       {!items.length ? <p>Nothing in the Cart. Add some items...</p>:
@@ -20,6 +22,7 @@ function Cart({ items, total, clearCart, cartOpen}) {
       </>)}
       <button className="close-cart-button" onClick={()=>cartOpen(false)}>Close Cart</button>
     </div>
+    </Modal>
   );
 }
 
