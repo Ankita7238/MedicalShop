@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import './Form.css';
 
 function Form({ addToMedicines }) {
+  const [pricePlaceholder, setPricePlaceholder] = useState('0');
   const [medicine, setMedicine] = useState({
     name: '',
     desc: '',
-    price: 0
+    price: ''
   });
 
   const handleChange = (e) => {
@@ -16,7 +17,18 @@ function Form({ addToMedicines }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     addToMedicines(medicine);
-    setMedicine({ name: '', desc: '', price: 0 });
+    setMedicine({ name: '', desc: '', price: '' });
+    setPricePlaceholder('0');
+  };
+
+  const handlePriceFocus = () => {
+    setPricePlaceholder('');
+  };
+
+  const handlePriceBlur = () => {
+    if (medicine.price === '') {
+      setPricePlaceholder('0');
+    }
   };
 
   return (
@@ -47,13 +59,15 @@ function Form({ addToMedicines }) {
           <input
             type="number"
             name="price"
-            placeholder="Enter Price"
+            placeholder={pricePlaceholder}
             value={medicine.price}
             onChange={handleChange}
+            onFocus={handlePriceFocus}
+            onBlur={handlePriceBlur}
           />
         </div>
         <div className="form-group">
-            <button type="submit">Add</button>
+          <button type="submit">Add</button>
         </div>
       </form>
     </div>

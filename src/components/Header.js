@@ -1,31 +1,20 @@
 import React from 'react';
+import './Header.css';
 
-function Header({ openCart }) {
+function Header({ openCart, cartQuantity }) {
   return (
-    <header style={headerStyle}>
+    <header className='headerStyle'>
       <h1>Medical Shop Management</h1>
-      <button style={cartButtonStyle} onClick={openCart}>
-        Cart
-      </button>
+      <div className="cartContainerStyle">
+        <button className='cartButtonStyle' onClick={openCart}>
+          Cart
+        </button>
+        {cartQuantity > 0 && <span className="cart-badge">{cartQuantity}</span>}
+      </div>
     </header>
   );
 }
 
-const headerStyle = {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  padding: '1rem',
-  backgroundColor: '#333',
-  color: '#fff',
-};
 
-const cartButtonStyle = {
-  padding: '1rem 2rem',
-  backgroundColor: '#ff9900',
-  border: 'none',
-  borderRadius: '4px',
-  cursor: 'pointer',
-};
 
 export default Header;
