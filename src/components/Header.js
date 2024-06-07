@@ -1,7 +1,12 @@
+// Header.js
 import React from 'react';
+import { useCart } from './CartContext';
 import './Header.css';
 
-function Header({ openCart, cartQuantity }) {
+function Header({ openCart }) {
+  const { cartItems } = useCart();
+  const cartQuantity = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+
   return (
     <header className='headerStyle'>
       <h1>Medical Shop Management</h1>
@@ -14,7 +19,5 @@ function Header({ openCart, cartQuantity }) {
     </header>
   );
 }
-
-
 
 export default Header;

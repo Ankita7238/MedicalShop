@@ -1,21 +1,27 @@
+// MedicineList.js
 import React, { useState } from 'react';
+import { useCart } from './CartContext';
 import './MedicineList.css';
 
-function MedicineList({ medicines, addToCart }) {
+function MedicineList({ medicines }) {
   return (
     <div className="medicine-list-container">
       <h2>Medicine List</h2>
-      {medicines.length===0? <p>No medicines added to the list</p>:
-      (<ul className="medicine-list">
-        {medicines.map((medicine, index) => (
-          <MedicineItem key={index} medicine={medicine} addToCart={addToCart} />
-        ))}
-      </ul>)}
+      {medicines.length === 0 ? (
+        <p>No medicines added to the list</p>
+      ) : (
+        <ul className="medicine-list">
+          {medicines.map((medicine, index) => (
+            <MedicineItem key={index} medicine={medicine} />
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
 
-function MedicineItem({ medicine, addToCart }) {
+function MedicineItem({ medicine }) {
+  const { addToCart } = useCart();
   const [quantity, setQuantity] = useState('');
   const [quantityPlaceholder, setQuantityPlaceholder] = useState('0');
 
